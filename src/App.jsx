@@ -6,17 +6,55 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/services')
-      .then(res => res.json())
-      .then(data => {
-        setServices(data.services);
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const localApiURL = 'http://localhost:4000/api/services'; // Define local API URL
+
+    // In a future step, you would replace 'null' with your deployed backend URL
+    const deployedApiURL = null; // e.g., 'https://your-awesomepawsome-backend.com/api/services'
+
+    const effectiveApiURL = isLocal ? localApiURL : deployedApiURL;
+
+    if (effectiveApiURL) {
+      console.log(`Workspaceing services from: ${effectiveApiURL}`);
+      setLoading(true); // Set loading true before fetch
+      fetch(effectiveApiURL)
+        .then(res => {
+          if (!res.ok) {
+            // If response not OK, throw an error to be caught by .catch()
+            throw new Error(`HTTP error! status: ${res.status} while fetching from ${effectiveApiURL}`);
+          }
+          return res.json();
+        })
+        .then(data => {
+          if (data && data.services && Array.isArray(data.services)) {
+            setServices(data.services);
+          } else {
+            // Handle cases where data.services might be missing or not an array
+            console.error('Fetched data does not contain a valid services array:', data);
+            setServices([]); // Set to empty array or handle as an error state
+          }
+          setLoading(false);
+        })
+        .catch(err => {
+          console.error('Error fetching services:', err);
+          setServices([]); // Clear services or set an error state
+          setLoading(false);
+        });
+    } else {
+      // Fallback for non-local environments if deployedApiURL is not yet set
+      console.log("Using fallback static data (not local and no deployed API URL set).");
+      setLoading(true); // Set loading true
+      // Simulate a small delay for fallback data like a fetch would have
+      setTimeout(() => {
+        setServices([
+          { id: 1, name: 'Dog Walking (Sample)', price: '$25/hour', description: 'Daily walks for your furry friend' },
+          { id: 2, name: 'Pet Sitting (Sample)', price: '$40/day', description: "In-home care while you're away" },
+          { id: 3, name: 'Pet Grooming (Sample)', price: '$60/session', description: 'Professional grooming services' }
+        ]);
         setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error:', err);
-        setLoading(false);
-      });
-  }, []);
+      }, 500); // 500ms delay
+    }
+  }, []); // Empty dependency array ensures this runs once on component mount
 
   return (
     <div style={{ minHeight: '100vh', padding: '2rem', background: '#f9fafb' }}>
