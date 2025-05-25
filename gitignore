@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/ # If you ever use SSR
+*.local
+
+# Vite build cache
+.vite/
+build/ # Common alternative to dist
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDE / OS specific
+.DS_Store
+Thumbs.db
+*.pem
+*.key
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
