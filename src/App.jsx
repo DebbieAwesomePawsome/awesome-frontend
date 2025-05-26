@@ -56,35 +56,62 @@ function App() {
     }
   }, []); // Empty dependency array ensures this runs once on component mount
 
-  return (
-    <div style={{ minHeight: '100vh', padding: '2rem', background: '#f9fafb' }}>
-      <h1 style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '2.5rem', marginBottom: '2rem' }}>
-        Debbie's Awesome Pawsome
-      </h1>
-      <div>
-        <p className="text-xl text-gray-600 mb-8">
-          Coming soon: The friendliest pet care site on the web! 🐾
-        </p>
-        <div className="text-sm text-gray-500">
-          Professional pet sitting, dog walking, and grooming services
+ return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+      {/* Header with Logo and Animated Mascots */}
+      <header className="w-full bg-white shadow-lg sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          {/* Left: Brand */}
+          <div className="flex-1">
+            <h1 className="text-2xl md:text-3xl font-bold text-purple-800 tracking-wide">
+              Debbie's Awesome Pawsome
+            </h1>
+            <p className="text-sm text-gray-600 hidden sm:block">
+              Professional Pet Care Services
+            </p>
+          </div>
+          
+          {/* Right: Animated Mascots */}
+          <div className="w-24 h-24 md:w-32 md:h-32 relative">
+            {/* Placeholder for now - we'll add Lottie animation here */}
+            <div className="w-full h-full bg-gradient-to-br from-orange-200 to-pink-200 rounded-full flex items-center justify-center text-2xl animate-pulse">
+              🐕🐱
+            </div>
+          </div>
         </div>
-      </div>
-      <div style={{ maxWidth: '640px', margin: '0 auto' }}>
-        <h2 style={{ fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '1rem' }}>Our Services</h2>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-6xl mx-auto px-4 py-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            Our Services
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Professional, loving care for your furry family members
+          </p>
+        </div>
+        
         {loading ? (
-          <p>Loading services...</p>
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+            <span className="ml-4 text-lg text-gray-600">Loading services...</span>
+          </div>
         ) : (
-          <div style={{ display: 'grid', gap: '1rem' }}>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map(service => (
-              <div key={service.id} style={{ background: '#fff', padding: '1rem', borderRadius: '0.5rem', boxShadow: '0 0 4px #ddd' }}>
-                <h3 style={{ fontWeight: 'bold' }}>{service.name}</h3>
-                <p style={{ color: '#16a34a', fontWeight: 'bold' }}>{service.price}</p>
-                <p style={{ color: '#555' }}>{service.description}</p>
+              <div key={service.id} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border-l-4 border-purple-500">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{service.name}</h3>
+                <p className="text-2xl font-bold text-green-600 mb-3">{service.price}</p>
+                <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                <button className="mt-4 bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors duration-200 font-semibold">
+                  Book Now
+                </button>
               </div>
             ))}
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }

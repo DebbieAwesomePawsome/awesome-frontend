@@ -1,24 +1,18 @@
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
-import defaultTheme from 'tailwindcss/defaultTheme'
-
-export default {
+export default { // Or module.exports = {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  safelist: [ // <-- ADD THIS SECTION
-    'm-12',
-    'p-12',
-    'font-extrabold',
-    'bg-blue-700',
-    'text-yellow-300',
-    'text-5xl',
-    // Let's also add one of your original test colors
-    'text-pink-500',
-    'underline'
+    "./src/**/*.{js,ts,jsx,tsx}", // This content array is still correct
   ],
   theme: {
-    extend: {},
+    extend: {
+      // You can add your custom theme extensions here later if needed
+      // For example:
+      // colors: {
+      //   'brand-blue': '#007bff',
+      // },
+    },
   },
   plugins: [],
 }
