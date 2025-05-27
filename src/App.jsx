@@ -42,7 +42,7 @@ function App() {
 
     // Later, replace 'null'with deployed backend URL
     //const deployedApiURL = null; // e.g., 'https://your-awesomepawsome-backend.com/api/services'
-    const deployedApiURL = 'http://68.183.151.250:4000/api/services';
+    const deployedApiURL = 'https://api.debspawsome.com/api/services';
     const effectiveApiURL = isLocal ? localApiURL : deployedApiURL;
 
     if (effectiveApiURL) {
