@@ -34,15 +34,15 @@ function App() {
     setTimeout(() => setIsCatActive(false), 1500);
   };
 
-  // ... your existing useEffect for services ...
+  // ... existing useEffect for services ...
 
   useEffect(() => {
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const localApiURL = 'http://localhost:4000/api/services'; // Define local API URL
 
-    // In a future step, you would replace 'null' with your deployed backend URL
-    const deployedApiURL = null; // e.g., 'https://your-awesomepawsome-backend.com/api/services'
-
+    // Later, replace 'null'with deployed backend URL
+    //const deployedApiURL = null; // e.g., 'https://your-awesomepawsome-backend.com/api/services'
+    const deployedApiURL = 'http://68.183.151.250:4000/api/services';
     const effectiveApiURL = isLocal ? localApiURL : deployedApiURL;
 
     if (effectiveApiURL) {
