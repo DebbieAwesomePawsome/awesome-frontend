@@ -83,15 +83,17 @@ function HomePage() {
                   else handleServiceCardMouseEnterCat();
                 }}
               >
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{service.name}</h3>
-                <p className="text-2xl font-bold text-green-600 mb-3">{service.price}</p>
+                {/* Name now takes on styles previously used by price (size and color) */}
+                <h3 className="text-2xl font-bold text-green-600 mb-2">{service.name}</h3>
+                {/* Price now takes on styles previously used by name (size and color) */}
+                <p className="text-xl font-bold text-gray-800 mb-3">{service.price_string}</p>
                 <p className="text-gray-600 leading-relaxed mb-4">{service.description}</p>
                 <button
                   className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-all duration-200 font-semibold hover:scale-105 transform"
                   onMouseEnter={handleServiceCardMouseEnterExcitement} // Changed to local handler
                   onClick={handleServiceCardMouseEnterExcitement}    // Changed to local handler
                 >
-                  Book Now
+                  Request booking
                 </button>
               </div>
             ))}
