@@ -2,10 +2,16 @@
 import React, { useState, useEffect } from 'react';
 // Removed Link from here as "Book Now" is a button, not a router Link for now
 // Removed Lottie and animation imports/state/triggers - those are now in MainLayout.jsx
+import BookingFormModal from '../components/BookingFormModal'; 
 
 function HomePage() {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // <<< NEW: State for Booking Modal >>>
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [selectedServiceForBooking, setSelectedServiceForBooking] = useState('');
 
   // If service card hovers should affect header animations, this needs global state/context.
   // For now, these are local console logs or could trigger local card effects.
@@ -52,6 +58,17 @@ function HomePage() {
       });
   }, []);
 
+  // <<< NEW: Booking Modal Handlers >>>
+  const handleOpenBookingModal = (serviceName) => {
+    setSelectedServiceForBooking(serviceName);
+    setIsBookingModalOpen(true);
+  };
+
+  const handleCloseBookingModal = () => {
+    setIsBookingModalOpen(false);
+    setSelectedServiceForBooking(''); // Clear selected service
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="text-center mb-12">
@@ -90,8 +107,8 @@ function HomePage() {
                 <p className="text-gray-600 leading-relaxed mb-4">{service.description}</p>
                 <button
                   className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-all duration-200 font-semibold hover:scale-105 transform"
-                  onMouseEnter={handleServiceCardMouseEnterExcitement} // Changed to local handler
-                  onClick={handleServiceCardMouseEnterExcitement}    // Changed to local handler
+                  // onMouseEnter={handleServiceCardMouseEnterExcitement} // Changed to local handler
+                  onClick={() => handleOpenBookingModal(service.name)}   // Changed to local handler
                 >
                   Request booking
                 </button>
@@ -102,6 +119,12 @@ function HomePage() {
           <p>No services to display at the moment. Please try again later.</p>
         )
       )}
+      {/* <<< NEW: Render the BookingFormModal >>> */}
+      <BookingFormModal
+        isOpen={isBookingModalOpen}
+        onClose={handleCloseBookingModal}
+        serviceName={selectedServiceForBooking}
+      />
     </div>
   );
 }
