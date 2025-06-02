@@ -9,6 +9,7 @@ import AdminLayout from './layouts/AdminLayout.jsx';
 // Public Pages
 import HomePage from './pages/HomePage.jsx';
 // import AboutPage from './pages/AboutPage.jsx'; // Future page
+import AboutPage from './pages/AboutPage.jsx';
 
 // Admin Pages
 import AdminLoginPage from './pages/admin/AdminLoginPage.jsx';
@@ -26,7 +27,10 @@ function App() {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         {/* <Route path="about" element={<AboutPage />} /> */}
+         <Route path="/about" element={<AboutPage />} />
+         {/* <Route path="privacy-policy" element={<PrivacyPolicyPage />} /> ... we'll add this next */}
       </Route>
+
 
       {/* --- Admin Routes --- */}
 
