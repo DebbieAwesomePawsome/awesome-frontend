@@ -45,7 +45,7 @@ function MainLayout() {
             {/* Left: Brand + Smithie */}
             <div className="flex items-center gap-3 flex-1">
               <img 
-                src="/images/smithie-icon.png" 
+                src="/images/smithie-face-icon.png" 
                 alt="Smithie AI Assistant"
                 className="w-10 h-10 cursor-pointer hover:scale-110 transition-transform"
                 onClick={() => alert('Smithie is learning new tricks!')}
