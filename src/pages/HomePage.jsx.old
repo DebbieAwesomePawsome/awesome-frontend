@@ -1,5 +1,7 @@
 // src/pages/HomePage.jsx
 import React, { useState, useEffect } from 'react';
+// Removed Link from here as "Book Now" is a button, not a router Link for now
+// Removed Lottie and animation imports/state/triggers - those are now in MainLayout.jsx
 import BookingFormModal from '../components/BookingFormModal'; 
 
 function HomePage() {
@@ -7,13 +9,15 @@ function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // State for Booking Modal
+  // <<< NEW: State for Booking Modal >>>
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [selectedServiceForBooking, setSelectedServiceForBooking] = useState('');
 
-  // Local handlers for potential future animation integration
+  // If service card hovers should affect header animations, this needs global state/context.
+  // For now, these are local console logs or could trigger local card effects.
   const handleServiceCardMouseEnterExcitement = () => {
     console.log("HomePage: Service card excitement trigger called");
+    // This won't directly call triggerPetExcitement in MainLayout without further setup
   };
   const handleServiceCardMouseEnterDog = () => {
     console.log("HomePage: Service card dog trigger called");
@@ -21,6 +25,7 @@ function HomePage() {
   const handleServiceCardMouseEnterCat = () => {
     console.log("HomePage: Service card cat trigger called");
   };
+
 
   useEffect(() => {
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -53,7 +58,7 @@ function HomePage() {
       });
   }, []);
 
-  // Booking Modal Handlers
+  // <<< NEW: Booking Modal Handlers >>>
   const handleOpenBookingModal = (serviceName) => {
     setSelectedServiceForBooking(serviceName);
     setIsBookingModalOpen(true);
@@ -61,16 +66,15 @@ function HomePage() {
 
   const handleCloseBookingModal = () => {
     setIsBookingModalOpen(false);
-    setSelectedServiceForBooking(''); 
+    setSelectedServiceForBooking(''); // Clear selected service
   };
 
   return (
-    <div className="w-full px-4 md:px-8 lg:px-12 py-8">
-      {/* Header Section */}
+    <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="text-center mb-12">
         <h2
           className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 cursor-pointer hover:text-purple-600 transition-colors"
-          onMouseEnter={handleServiceCardMouseEnterExcitement}
+          onMouseEnter={handleServiceCardMouseEnterExcitement} // Changed to local handler
         >
           Our Services
         </h2>
@@ -79,7 +83,6 @@ function HomePage() {
         </p>
       </div>
 
-      {/* Services Section */}
       {loading ? (
         <div className="flex justify-center items-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
@@ -87,43 +90,36 @@ function HomePage() {
         </div>
       ) : (
         services.length > 0 ? (
-          <div className="w-full space-y-6">
+          <div className="flex flex-col items-center gap-8">
             {services.map((service, index) => (
               <div
                 key={service.id}
-                className="bg-white rounded-xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-all duration-300 border-l-4 border-purple-500 hover:border-pink-500 w-full"
-                onMouseEnter={() => {
+                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border-l-4 border-purple-500 hover:border-pink-500"
+                onMouseEnter={() => { // Changed to local handlers
                   if (index % 2 === 0) handleServiceCardMouseEnterDog();
                   else handleServiceCardMouseEnterCat();
                 }}
               >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  {/* Left side: Service details */}
-                  <div className="flex-1">
-                    <h3 className="text-2xl md:text-3xl font-bold text-green-600 mb-2">{service.name}</h3>
-                    <p className="text-xl md:text-2xl font-bold text-gray-800 mb-3">{service.price_string}</p>
-                    <p className="text-gray-600 text-lg leading-relaxed">{service.description}</p>
-                  </div>
-                  
-                  {/* Right side: Book button */}
-                  <div className="md:flex-shrink-0">
-                    <button
-                      className="w-full md:w-auto bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg transition-all duration-200 font-semibold hover:scale-105 transform text-lg"
-                      onClick={() => handleOpenBookingModal(service.name)}
-                    >
-                      Request Booking
-                    </button>
-                  </div>
-                </div>
+                {/* Name now takes on styles previously used by price (size and color) */}
+                <h3 className="text-2xl font-bold text-green-600 mb-2">{service.name}</h3>
+                {/* Price now takes on styles previously used by name (size and color) */}
+                <p className="text-xl font-bold text-gray-800 mb-3">{service.price_string}</p>
+                <p className="text-gray-600 leading-relaxed mb-4">{service.description}</p>
+                <button
+                  className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-all duration-200 font-semibold hover:scale-105 transform"
+                  // onMouseEnter={handleServiceCardMouseEnterExcitement} // Changed to local handler
+                  onClick={() => handleOpenBookingModal(service.name)}   // Changed to local handler
+                >
+                  Request booking
+                </button>
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-600">No services to display at the moment. Please try again later.</p>
+          <p>No services to display at the moment. Please try again later.</p>
         )
       )}
-      
-      {/* Booking Modal */}
+      {/* <<< NEW: Render the BookingFormModal >>> */}
       <BookingFormModal
         isOpen={isBookingModalOpen}
         onClose={handleCloseBookingModal}
