@@ -55,8 +55,7 @@ export default function PrivacyPolicyPage() {
             was last updated on June 2, 2025. {/* Update date as needed */}
           </p>
           <p className="mt-6">
-            If you have any questions regarding this privacy policy, you may contact us using the 
-            "Inquire" form linked in our website footer.
+            If you have any questions regarding this privacy policy, please contact us.
           </p>
         </div>
       </div>
