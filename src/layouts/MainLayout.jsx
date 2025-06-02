@@ -13,7 +13,7 @@ function MainLayout() {
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
 
   const headerRef = useRef(null);
-  const footerRef = useRef(null); // Keep for desktop static footer measurement if needed, or remove if footer height is stable
+  const footerRef = useRef(null);
   const [mainPaddingTop, setMainPaddingTop] = useState(0);
   const [mainPaddingBottom, setMainPaddingBottom] = useState(0);
 
@@ -26,9 +26,10 @@ function MainLayout() {
 
   useEffect(() => {
     const calculatePadding = () => {
-      if (window.innerWidth < 768) { // md breakpoint
+      const isMobile = window.innerWidth < 768; // md breakpoint
+      if (isMobile) {
         const headerHeight = headerRef.current ? headerRef.current.offsetHeight : 0;
-        const footerActualHeight = footerRef.current ? footerRef.current.querySelector('footer')?.offsetHeight : 0; // Get height of actual footer tag
+        const footerActualHeight = footerRef.current ? footerRef.current.querySelector('footer')?.offsetHeight : 0;
         setMainPaddingTop(headerHeight);
         setMainPaddingBottom(footerActualHeight);
       } else {
@@ -36,12 +37,9 @@ function MainLayout() {
         setMainPaddingBottom(0);
       }
     };
-
     calculatePadding();
-    // Add a small timeout for initial Lottie animations to settle if their height affects header
-    const timer = setTimeout(calculatePadding, 100); 
+    const timer = setTimeout(calculatePadding, 100);
     window.addEventListener('resize', calculatePadding);
-    
     return () => {
       clearTimeout(timer);
       window.removeEventListener('resize', calculatePadding);
@@ -49,30 +47,29 @@ function MainLayout() {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden md:min-h-screen md:overflow-visible">
+    // MODIFIED: Base is min-h-screen. For mobile fixed layout, we add h-screen and overflow-hidden, 
+    // then remove h-screen for md+ using md:h-auto to let min-h-screen and content define height.
+    <div className="flex flex-col min-h-screen 
+                   max-h-screen overflow-hidden {/* Apply to mobile by default for fixed layout */}
+                   md:max-h-none md:h-auto md:overflow-visible {/* Override for desktop */}
+                  ">
       
       <header ref={headerRef} className="fixed top-0 inset-x-0 bg-white shadow-lg z-50 md:sticky">
-        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4 flex justify-between items-center"> {/* Slightly reduced py for header */}
-          
-          {/* Left: AI Assistant Icon + Brand */}
-          <div className="flex items-center space-x-2 sm:space-x-3"> {/* Container for icon and brand */}
-            {/* AI Chatbot Placeholder - MOVED TO HEADER */}
+        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4 flex justify-between items-center">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <div 
               id="ai-assistant-header-placeholder"
-              className="p-2 rounded-full hover:bg-gray-200 cursor-pointer transition-colors duration-200" // Removed fixed, bottom, right. Added padding, hover.
-              title="AI Assistant (Coming Soon!)"
+              className="p-1 rounded-full hover:bg-gray-200 cursor-pointer transition-colors duration-200"
+              title="Smithie AI Assistant (Coming Soon!)"
               onClick={() => alert('Smithie, our AI Assistant, is learning new tricks and will be here soon!')}
-              data-testid="ai-chatbot-placeholder-header"
             >
               <img 
-                src="/images/smithie-face-icon.png" // <<< UPDATE THIS to your new filename
+                src="/images/smithie-face-icon.png" 
                 alt="Smithie AI Assistant" 
-                className="h-7 w-7 sm:h-8 sm:w-8 rounded-full object-cover" // These classes make it round!
+                className="h-12 w-12 rounded-full object-cover" // INCREASED Smithie icon size
               />
             </div>
-
-            {/* Brand */}
-            <div className="flex-1"> {/* flex-1 might not be needed if AI icon is small */}
+            <div> {/* Removed flex-1 from here to allow brand and AI icon to be more balanced */}
               <Link to="/">
                 <h1
                   className="text-xl sm:text-2xl md:text-3xl font-bold text-purple-800 tracking-wide cursor-pointer hover:text-purple-600 transition-colors"
@@ -86,27 +83,16 @@ function MainLayout() {
               </p>
             </div>
           </div>
-          
-          {/* Right: Interactive Mascots */}
-          <div className="flex items-center space-x-1 sm:space-x-2"> {/* Reduced space for mascots */}
-            <div
-              className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 cursor-pointer transform hover:scale-110 transition-transform duration-300"
-              onMouseEnter={triggerDogOnly}
-            >
-              <Lottie animationData={dogAnimation} loop={true} autoplay={true} className="w-full h-full" />
-            </div>
-            <div
-              className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 cursor-pointer transform hover:scale-110 transition-transform duration-300"
-              onMouseEnter={triggerCatOnly}
-            >
-              <Lottie animationData={catAnimation} loop={true} autoplay={true} className="w-full h-full" />
-            </div>
+          <div className="flex items-center space-x-1 sm:space-x-2">
+            {/* Lottie Mascots */}
+            <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 ..."><Lottie animationData={dogAnimation} loop={true} autoplay={true} className="w-full h-full" /></div>
+            <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 ..."><Lottie animationData={catAnimation} loop={true} autoplay={true} className="w-full h-full" /></div>
           </div>
         </div>
       </header>
 
       <main 
-        className="flex-grow overflow-y-auto" // Scrollable content area
+        className="flex-grow overflow-y-auto md:overflow-visible"
         style={{ 
           paddingTop: mainPaddingTop > 0 ? `${mainPaddingTop}px` : undefined, 
           paddingBottom: mainPaddingBottom > 0 ? `${mainPaddingBottom}px` : undefined 
@@ -115,18 +101,24 @@ function MainLayout() {
         <Outlet />
       </main>
 
-      {/* Footer Wrapper: Fixed on mobile, static on desktop */}
       <div ref={footerRef} className="fixed bottom-0 inset-x-0 z-40 md:static">
         <Footer openEnquiryModal={openEnquiryModal} />
       </div>
 
-      {/* General Enquiry Modal */}
+      {/* AI Chatbot Placeholder (the one we originally had at bottom-right, if you still want it there for desktop) */}
+      {/* If you moved it permanently to the header, you can remove this one. */}
+      {/* For now, let's assume it's only in the header. If you want it bottom-right on desktop, uncomment and adjust. */}
+      {/* <div 
+        id="ai-assistant-desktop-placeholder" // Different ID if you keep both
+        className="hidden md:block fixed bottom-4 right-4 z-50 p-3 ...">
+        <svg ... />
+      </div>
+      */}
+      
       <GeneralEnquiryModal 
         isOpen={isEnquiryModalOpen} 
         onClose={closeEnquiryModal} 
       />
-      
-      {/* Old AI Chatbot Placeholder at bottom is REMOVED from here */}
     </div>
   );
 }

@@ -16,7 +16,9 @@ import AdminLoginPage from './pages/admin/AdminLoginPage.jsx';
 import AdminServicesDashboardPage from './pages/admin/AdminServicesDashboardPage.jsx';
 // import ServiceAddPage from './pages/admin/ServiceAddPage.jsx'; // Future page
 // import ServiceEditPage from './pages/admin/ServiceEditPage.jsx'; // Future page
-
+import TestimonialsPage from './pages/TestimonialsPage.jsx';
+// ... other page imports
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage.jsx';
 // Import the AdminProtectedRoute (we will create this file in the next step)
 import AdminProtectedRoute from './components/AdminProtectedRoute.jsx';
 
@@ -27,7 +29,9 @@ function App() {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         {/* <Route path="about" element={<AboutPage />} /> */}
-         <Route path="/about" element={<AboutPage />} />
+        <Route path="about" element={<AboutPage />} /> {/* CORRECTED: relative path */}
+        <Route path="testimonials" element={<TestimonialsPage />} /> {/* CORRECTED: relative path */}
+        <Route path="privacy-policy" element={<PrivacyPolicyPage />} /> 
          {/* <Route path="privacy-policy" element={<PrivacyPolicyPage />} /> ... we'll add this next */}
       </Route>
 
