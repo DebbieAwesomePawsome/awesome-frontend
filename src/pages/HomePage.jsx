@@ -1,6 +1,10 @@
 // src/pages/HomePage.jsx
 import React, { useState, useEffect } from 'react';
 import BookingFormModal from '../components/BookingFormModal'; 
+import LoadingSpinner from '../components/LoadingSpinner.jsx'; 
+import CertificationBanner from '../components/CertificationBanner.jsx';
+import LocalSEOContent from '../components/LocalSEOContent.jsx';
+// ... other imports
 
 function HomePage() {
   const [services, setServices] = useState([]);
@@ -75,17 +79,16 @@ function HomePage() {
           Our Services
         </h2>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Professional, loving care for your furry family members
+          Professional, loving care in Fairfax, VA and surronds
         </p>
       </div>
+<     CertificationBanner /> {/* <<< ADD THE BANNER HERE */}
+
 
       {/* Services Section */}
       {loading ? (
-        <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
-          <span className="ml-4 text-lg text-gray-600">Loading services...</span>
-        </div>
-      ) : (
+        <LoadingSpinner message="Loading our totally Pawsome services..." />
+        ) : (
         services.length > 0 ? (
           <div className="w-full space-y-6">
             {services.map((service, index) => (
@@ -122,6 +125,8 @@ function HomePage() {
           <p className="text-center text-gray-600">No services to display at the moment. Please try again later.</p>
         )
       )}
+
+      <LocalSEOContent />
       
       {/* Booking Modal */}
       <BookingFormModal

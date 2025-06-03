@@ -3,9 +3,11 @@ import React, { useState, useEffect, useCallback } from 'react'; // Added useCal
 // import { useAuth } from '../../context/AuthContext'; // No longer directly needed here if modal handles token
 import { getAllServices } from '../../services/adminApiService';
 import AddServiceModal from '../../components/admin/AddServiceModal';
-import EditServiceModal from '../../components/admin/EditServiceModal'; // <<< NEW: Import EditServiceModal
+import EditServiceModal from '../../components/admin/EditServiceModal';
 import { useAuth } from '../../context/AuthContext';
 import { deleteService, reorderServices } from '../../services/adminApiService';
+import LoadingSpinner from '../../components/LoadingSpinner.jsx';
+
 
 function AdminServicesDashboardPage() {
   const [services, setServices] = useState([]);
@@ -105,7 +107,7 @@ function AdminServicesDashboardPage() {
   };
 
   if (isLoading && services.length === 0) { // Show loading only if services are not yet populated
-    return <div className="text-center p-4">Loading services...</div>;
+    return <div className="text-center p-4">Loading totally Pawsome services...</div>;
   }
 
   if (error) {

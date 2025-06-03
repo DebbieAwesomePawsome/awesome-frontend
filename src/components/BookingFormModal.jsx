@@ -5,7 +5,7 @@ export default function BookingFormModal({ isOpen, onClose, serviceName }) {
   const initialFormData = { // Defined initial state for easier reset
     customerName: '', customerEmail: '', customerPhone: '',
     petName: '', petType: '', serviceName: '',
-    preferredDateTime: '', notes: ''
+    preferredDateTime: '', notes: '', referralSource: '', hp_fill_if_bot: '' 
   };
   const [formData, setFormData] = useState(initialFormData);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -147,6 +147,28 @@ export default function BookingFormModal({ isOpen, onClose, serviceName }) {
                 <label htmlFor="bookingPetType" className="block text-sm font-medium text-gray-700">Pet Type (e.g., Dog, Cat, Rabbit)</label>
                 <input type="text" name="petType" id="bookingPetType" value={formData.petType} onChange={handleChange} className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
               </div>
+              <div>
+                <label htmlFor="bookingReferralSource" className="block text-sm font-medium text-gray-700">
+                  How did you hear about us? (Optional)
+                </label>
+                <select
+                  name="referralSource" // This MUST match the key in formData and what backend expects
+                  id="bookingReferralSource"
+                  value={formData.referralSource}
+                  onChange={handleChange} // Your existing handleChange should handle this
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                >
+                  <option value="">Please select an option</option>
+                  <option value="Google Search">Google Search</option>
+                  <option value="Facebook">Facebook</option>
+                  <option value="Nextdoor">Nextdoor</option>
+                  <option value="Referral from Friend/Family">Referral from Friend/Family</option>
+                  <option value="Referral from Vet">Referral from Vet</option>
+                  <option value="Local Ad/Flyer/Business Card">Local Ad/Flyer/Business Card</option>
+                  <option value="Saw Debbie Caring for a Pet">Saw Debbie Caring for a Pet</option>
+                  <option value="Other">Other</option>
+                  </select>
+              </div>
               {/* Preferred Date/Time */}
               <div>
                 <label htmlFor="bookingPreferredDateTime" className="block text-sm font-medium text-gray-700">Preferred Date(s) / Time(s) <span className="text-red-500">*</span></label>
@@ -156,6 +178,18 @@ export default function BookingFormModal({ isOpen, onClose, serviceName }) {
               <div>
                 <label htmlFor="bookingNotes" className="block text-sm font-medium text-gray-700">Additional Notes / Special Requirements</label>
                 <textarea name="notes" id="bookingNotes" value={formData.notes} onChange={handleChange} rows="3" className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+              </div>
+              <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+              <label htmlFor="b_hp_comments">Please leave this field blank</label> {/* Label for accessibility/bots */}
+              <input 
+                type="text" 
+                name="hp_fill_if_bot" // This name MUST match what backend checks
+                id="b_hp_comments"    // Unique ID
+                tabIndex={-1} 
+                autoComplete="off"
+                value={formData.hp_fill_if_bot} // Controlled component
+                onChange={handleChange} 
+              />
               </div>
               {error && <p className="text-sm text-red-600 bg-red-100 p-3 rounded-md">{error}</p>}
             </form>

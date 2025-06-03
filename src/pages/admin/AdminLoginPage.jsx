@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext'; // Adjust path if you placed AuthContext elsewhere
 import { useNavigate, useLocation } from 'react-router-dom';
+import LoadingSpinner from '../../components/LoadingSpinner.jsx';
 
 function AdminLoginPage() {
   const [username, setUsername] = useState('');
@@ -50,14 +51,11 @@ function AdminLoginPage() {
 
   // If AuthContext is still verifying the token (e.g. on page load)
   // or if user is authenticated and about to be redirected, show loading.
-  if (authIsLoading || isAdminAuthenticated) {
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
-        <p className="text-lg text-gray-700">Loading...</p>
-        {/* You could replace this with a spinner component later */}
-      </div>
-    );
+  if (authIsLoading) { 
+    return <LoadingSpinner message="Loading..." />;
   }
+  // The useEffect for redirecting if isAdminAuthenticated will still handle the redirect logic.
+  // If already isAdminAuthenticated, the spinner might flash briefly before redirect.
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">

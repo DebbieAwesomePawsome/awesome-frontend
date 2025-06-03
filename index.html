@@ -9,14 +9,19 @@
     <meta name="description" content="Debbie's Awesome Pawsome offers professional, loving pet sitting and dog walking in Fairfax, McLean, Vienna, and Northern Virginia. Services by an Animal Behavior College (ABC) certified expert." />
     
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://debspawsome.com/" /> <meta property="og:title" content="Debbie’s Awesome Pawsome – ABC Certified Pet Care Fairfax VA" />
+    <meta property="og:url" content="https://debspawsome.com/" />
+    <meta property="og:title" content="Debbie’s Awesome Pawsome – ABC Certified Pet Care Fairfax VA" />
     <meta property="og:description" content="Trusted local pet care for dogs, cats & all critters by an Animal Behavior College certified specialist in Fairfax, VA and surrounding areas." />
-    <meta property="og:image" content="https://debspawsome.com/mithiepng.png" /> <meta property="og:site_name" content="Debbie's Awesome Pawsome" />
+    <meta property="og:image" content="https://debspawsome.com/mithiepng.png" /> 
+    <meta property="og:site_name" content="Debbie's Awesome Pawsome" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://debspawsome.com/" /> <meta name="twitter:title" content="Debbie’s Awesome Pawsome – Certified Pet Care Fairfax" />
+    <meta name="twitter:url" content="https://debspawsome.com/" /> 
+    <meta name="twitter:title" content="Debbie’s Awesome Pawsome – Certified Pet Care Fairfax" />
     <meta name="twitter:description" content="Professional and loving pet care in Fairfax VA from an Animal Behavior College certified expert. Dog walking, pet sitting, and more." />
-    <meta name="twitter:image" content="https://debspawsome.com/mithiepng.png" /> <script type="application/ld+json">
+    <meta name="twitter:image" content="https://debspawsome.com/mithiepng.png" /> 
+
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "PetStore", 
@@ -31,7 +36,7 @@
         "addressCountry": "US"
       },
       "areaServed": {
-        "@type": "GeoCircle",
+        "@type": "GeoCircle", 
         "geoMidpoint": {
           "@type": "GeoCoordinates",
           "latitude": "38.8462",
@@ -61,9 +66,56 @@
       ]
     }
     </script>
-    </head>
+    
+    <style>
+      body {
+        margin: 0; /* Reset default margin */
+        /* Base font family can be set here if not relying on Tailwind preflight immediately */
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        background-color: #f9fafb; /* Tailwind's bg-gray-50 */
+      }
+      .initial-loading-overlay {
+        position: fixed; /* Cover the whole screen */
+        inset: 0; /* Equivalent to top:0, right:0, bottom:0, left:0 */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #f9fafb; /* Match body or a slightly different shade for overlay */
+        z-index: 99999; /* Ensure it's on top of everything */
+      }
+      .initial-spinner {
+        width: 50px;  /* Spinner size */
+        height: 50px; /* Spinner size */
+        border: 5px solid rgba(167, 139, 250, 0.3); /* Lighter purple, e.g., from purple-400 opacity 30% */
+        border-top-color: #8b5cf6; /* Main purple, e.g., purple-600 */
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      .initial-loading-overlay p {
+        margin-top: 20px;
+        font-size: 1.125rem; /* text-lg */
+        color: #581c87;    /* Darker purple, e.g., purple-800 */
+        font-weight: 500;  /* font-medium */
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  
+
+  </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      {/* === HTML for Initial Loading Spinner (NEW) === */}
+      {/* This will be displayed while your React app is loading and then replaced by React. */}
+      <div class="initial-loading-overlay">
+        <div class="initial-spinner"></div>
+        <p>Loading Debbie's Awesome Pawsome...</p>
+      </div>
+      {/* === End of Initial Spinner HTML === */}
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

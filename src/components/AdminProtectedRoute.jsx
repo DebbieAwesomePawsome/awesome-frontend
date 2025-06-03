@@ -2,6 +2,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext'; // Adjust path if your context is elsewhere
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import LoadingSpinner from './LoadingSpinner.jsx'; 
 
 function AdminProtectedRoute() {
   const { isAdminAuthenticated, isLoading: authIsLoading } = useAuth();
@@ -10,12 +11,7 @@ function AdminProtectedRoute() {
   if (authIsLoading) {
     // Display a loading indicator while the AuthContext determines the auth state
     // This prevents a flash of content or premature redirection
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-50">
-        <p className="text-xl font-semibold text-gray-700">Authenticating...</p>
-        {/* You can replace this with a more sophisticated spinner component later */}
-      </div>
-    );
+    return <LoadingSpinner message="Authenticating..." />;
   }
 
   if (!isAdminAuthenticated) {
