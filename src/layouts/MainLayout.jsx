@@ -113,6 +113,34 @@ function MainLayout() {
                 <div className="flex flex-col space-y-1 px-2 pb-3">
                   <NavLink to="/" className={navLinkStyle} onClick={handleMobileMenuLinkClick} end>Home</NavLink>
                   {/* ... other links ... */}
+                  <NavLink 
+                    to="/about" 
+                    className={navLinkStyle}
+                    onClick={handleMobileMenuLinkClick}
+                  >
+                    About
+                  </NavLink>
+                  <a 
+                    href="/#services" 
+                    // Apply similar styling to <a> tags if navLinkStyle is not directly applicable
+                    className="block text-gray-700 hover:text-purple-600 hover:bg-purple-50 py-2 px-3 rounded-md transition-colors" 
+                    onClick={handleMobileMenuLinkClick}
+                  >
+                    Services
+                  </a>
+                  <NavLink 
+                    to="/testimonials" 
+                    className={navLinkStyle}
+                    onClick={handleMobileMenuLinkClick}
+                  >
+                    Testimonials
+                  </NavLink>
+                  <button 
+                    onClick={handleMobileMenuEnquiryClick} // This handles openEnquiryModal & closes menu
+                    className="block w-full text-left text-gray-700 hover:text-purple-600 hover:bg-purple-50 py-2 px-3 rounded-md transition-colors"
+                  >
+                    Contact
+                  </button>
                    <Link to="/privacy-policy" className="block text-gray-700 hover:text-purple-600 hover:bg-purple-50 py-2 px-3 rounded-md transition-colors" onClick={handleMobileMenuLinkClick}>Privacy Policy</Link>
                 </div>
               </nav>
