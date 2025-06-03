@@ -79,7 +79,7 @@ function HomePage() {
           Our Services
         </h2>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Professional, loving care in Fairfax, VA and surronds
+          Professional, loving care in Fairfax, VA and surrounds
         </p>
       </div>
 <     CertificationBanner /> {/* <<< ADD THE BANNER HERE */}
@@ -127,7 +127,7 @@ function HomePage() {
       )}
 
       <LocalSEOContent />
-      
+
       {/* Booking Modal */}
       <BookingFormModal
         isOpen={isBookingModalOpen}
