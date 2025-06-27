@@ -31,7 +31,7 @@ function App() {
         {/* <Route path="about" element={<AboutPage />} /> */}
         <Route path="about" element={<AboutPage />} /> {/* CORRECTED: relative path */}
         <Route path="testimonials" element={<TestimonialsPage />} /> {/* CORRECTED: relative path */}
-        <Route path="privacy-policy" element={<PrivacyPolicyPage />} /> 
+        <Route path="privacy-policy" element={<PrivacyPolicyPage openEnquiryModal={openEnquiryModal} />} /> 
          {/* <Route path="privacy-policy" element={<PrivacyPolicyPage />} /> ... we'll add this next */}
       </Route>
 

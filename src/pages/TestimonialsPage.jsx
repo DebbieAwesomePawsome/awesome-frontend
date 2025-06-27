@@ -100,7 +100,7 @@ const testimonials = [
   },
 ];
 
-export default function TestimonialsPage() {
+export default function TestimonialsPage({ openEnquiryModal }) {
   return (
     <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="bg-white shadow-xl rounded-lg p-6 md:p-10">
@@ -128,13 +128,14 @@ export default function TestimonialsPage() {
           ))}
         </div>
         {/* Call to action at the bottom */}
-        <div className="mt-10 text-center">
-          <a
-            href="#contact"
+        <div className="flex justify-center mt-10">
+          <button
+            type="button"
+            onClick={openEnquiryModal}
             className="inline-block bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold px-8 py-3 rounded-lg shadow transition-colors duration-200"
           >
             Contact Debbie Now
-          </a>
+          </button>
         </div>
       </div>
     </section>
