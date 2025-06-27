@@ -39,7 +39,8 @@ function App() {
          {/* <Route path="privacy-policy" element={<PrivacyPolicyPage />} /> ... we'll add this next */}
       </Route>
 
-
+      <GeneralEnquiryModal isOpen={isEnquiryModalOpen} onClose={closeEnquiryModal} />
+      
       {/* --- Admin Routes --- */}
 
       {/* 1. Publicly accessible Admin Login Page */}
