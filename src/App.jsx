@@ -28,6 +28,7 @@ function App() {
   const openEnquiryModal = () => setIsEnquiryModalOpen(true);
   const closeEnquiryModal = () => setIsEnquiryModalOpen(false);
   return (
+    <>
     <Routes>
       {/* Public Site Routes: Wrapped by MainLayout */}
       <Route path="/" element={<MainLayout />}>
@@ -39,8 +40,7 @@ function App() {
          {/* <Route path="privacy-policy" element={<PrivacyPolicyPage />} /> ... we'll add this next */}
       </Route>
 
-      <GeneralEnquiryModal isOpen={isEnquiryModalOpen} onClose={closeEnquiryModal} />
-      
+
       {/* --- Admin Routes --- */}
 
       {/* 1. Publicly accessible Admin Login Page */}
@@ -69,6 +69,8 @@ function App() {
       {/* Optional: Add a catch-all 404 Not Found route here later */}
       {/* <Route path="*" element={<NotFoundPage />} /> */}
     </Routes>
+    <GeneralEnquiryModal isOpen={isEnquiryModalOpen} onClose={closeEnquiryModal} />
+    </>
   );
 }
 
