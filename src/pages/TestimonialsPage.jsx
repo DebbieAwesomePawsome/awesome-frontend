@@ -104,9 +104,13 @@ export default function TestimonialsPage() {
   return (
     <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="bg-white shadow-xl rounded-lg p-6 md:p-10">
-        <h1 className="text-3xl sm:text-4xl font-bold text-center text-purple-700 mb-8">
+        <h1 className="text-3xl sm:text-4xl font-bold text-center text-purple-700 mb-3">
           Happy Paws & Happy Owners!
         </h1>
+        <p className="text-center text-gray-600 text-base mb-8">
+          Here is a small, recent sample of what people say about Debbie's work, obtained from the site <span className="font-semibold text-purple-800">ROVER</span>.
+          These are <span className="font-bold">REAL testimonials from REAL people</span>, and further information can be provided upon request.
+        </p>
         <div className="text-center text-lg text-gray-700 space-y-6 leading-relaxed">
           {testimonials.map((t, idx) => (
             <div key={idx} className="bg-purple-50 border-l-4 border-purple-400 p-6 rounded shadow mb-6 text-left">
@@ -122,6 +126,15 @@ export default function TestimonialsPage() {
               </div>
             </div>
           ))}
+        </div>
+        {/* Call to action at the bottom */}
+        <div className="mt-10 text-center">
+          <a
+            href="#contact"
+            className="inline-block bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold px-8 py-3 rounded-lg shadow transition-colors duration-200"
+          >
+            Contact Debbie Now
+          </a>
         </div>
       </div>
     </section>
