@@ -4,8 +4,8 @@ import React from 'react';
 import { Link } from 'react-router-dom'; // Keep Link if used inside
 
 export default function AboutPage() {
-  const debbieBio = "Debbie is a passionate and certified pet care professional with [X] years of experience. She believes in providing kind, reliable, and expert care for every furry, scaled, or feathered friend. More details about Debbie's journey, her specific qualifications from Animal Behavior College, and her unique approach to pet care are coming very soon!";
-  const debbiePhoto = "/images/placeholder-debbie.png";
+  const debbieBio = "Debbie is a passionate and certified pet care professional with over 20 years of experience. She has trained dogs and cared for cats and worked for many years in animal shelters on the principle that they deserve our love and support. She believes in providing kind, reliable, and expert care for your pets. !";
+  const debbiePhoto = "/images/about-debbie.jpg";
   const abcBadge = "/images/abc-certification-badge-placeholder.png";
 
   return (
