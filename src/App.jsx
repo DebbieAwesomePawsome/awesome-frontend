@@ -17,12 +17,16 @@ import AdminServicesDashboardPage from './pages/admin/AdminServicesDashboardPage
 // import ServiceAddPage from './pages/admin/ServiceAddPage.jsx'; // Future page
 // import ServiceEditPage from './pages/admin/ServiceEditPage.jsx'; // Future page
 import TestimonialsPage from './pages/TestimonialsPage.jsx';
+import GeneralEnquiryModal from './components/GeneralEnquiryModal';
 // ... other page imports
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage.jsx';
 // Import the AdminProtectedRoute (we will create this file in the next step)
 import AdminProtectedRoute from './components/AdminProtectedRoute.jsx';
 
 function App() {
+  const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
+  const openEnquiryModal = () => setIsEnquiryModalOpen(true);
+  const closeEnquiryModal = () => setIsEnquiryModalOpen(false);
   return (
     <Routes>
       {/* Public Site Routes: Wrapped by MainLayout */}
