@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'; // Keep Link if used inside
 
 export default function AboutPage() {
   const debbieBio = "Debbie is a passionate and certified pet care professional with over 20 years of experience. She has trained dogs and cared for cats and other animals. Debbie has volunteered for many years in animal shelters on the principle that they deserve our love and support. She believes in providing kind, reliable, and expert care for your pets.";
-  const debbiePhoto = "/images/about-debbie.jpg";
+  const debbiePhoto = "/images/debbie-about-photo.jpg";
   const abcBadge = "/images/abc-certification-badge-placeholder.png";
 
    useEffect(() => {
@@ -64,9 +64,9 @@ export default function AboutPage() {
                 to="/#services"
                 className="text-purple-600 hover:text-purple-800 font-semibold underline transition-colors duration-200"
               >
-                Request Booking form
+                Request Booking form or Contact form 
               </Link>
-              {' '} found under each service on our homepage.
+              {' '} found under each available service on our Services page. If you can't find what you're looking for, contact us!
             </p>
           </div>
         </div>
