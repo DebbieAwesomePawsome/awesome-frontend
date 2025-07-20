@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';  // Add useEffect here
 import { Link } from 'react-router-dom'; // Keep Link if used inside
 
 export default function AboutPage() {
-  const debbieBio = "Debbie is a passionate and certified pet care professional with over 20 years of experience. She has trained dogs and cared for cats and other animals. Debbie has volunteered for many years in animal shelters on the principle that they deserve our love and support. She believes in providing kind, reliable, and expert care for your pets.";
+  const debbieBio = "Debbie is a passionate and certified pet care professional with over 20 years of experience. This includes dog training and caring for cats and other animals. Debbie has volunteered for many years in animal shelters on the principle that all animals deserve our love and support. Working with shelter dogs with difficult behaviour issues has given her the the confidence to tackle any challenge. It has also enhanced her expertise in helping dogs settle into their new homes. Debbie believes in providing kind, reliable, and expert care for your pets.";
   const debbiePhoto = "/images/debbie-about-photo.jpg";
   const abcBadge = "/images/abc-certification-badge-placeholder.png";
 
