@@ -1,5 +1,5 @@
 // frontend/src/pages/TestimonialsPage.jsx
-import React from 'react';
+
 import React, { useState, useEffect } from 'react';  // Add useEffect here
 
 
