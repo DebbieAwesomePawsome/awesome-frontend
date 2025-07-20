@@ -26,19 +26,18 @@ function HomePage() {
         </p>
       </section>
 
-      {/* Hero Image in Elliptical Frame */}
-      <section className="py-12 px-4">
-        <div className="max-w-3xl mx-auto">
-          <div className="relative h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden rounded-[50%] shadow-2xl border-4 border-purple-200">
-            <img 
-              src="/images/debbie-hero-poodle-small.jpg" 
-              alt="Debbie with a happy poodle and soccer ball"
-              className="w-full h-full object-contain"  // Changed from object-cover to object-contain
-              style={{ backgroundColor: '#f3f4f6' }}  // Add a background color for empty space
-            />
-          </div>
-        </div>
-      </section>
+     {/* Hero Image in Elliptical Frame */}
+<section className="py-12 px-4">
+  <div className="max-w-3xl mx-auto">
+    <div className="relative h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden rounded-[50%] shadow-2xl border-4 border-purple-200 bg-gray-100">
+      <img 
+        src="/images/debbie-hero-ellipse.jpg"  // New image name
+        alt="Debbie with a happy poodle and soccer ball"
+        className="w-full h-full object-contain"
+      />
+    </div>
+  </div>
+</section>
 
       {/* Main Navigation Cards */}
       <section className="px-4 md:px-8 lg:px-12 py-12">
