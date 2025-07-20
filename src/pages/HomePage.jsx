@@ -1,7 +1,6 @@
-// src/pages/HomePage.jsx
+// src/pages/HomePage.jsx (NEW FILE)
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import CertificationBanner from '../components/CertificationBanner.jsx';
 import LocalSEOContent from '../components/LocalSEOContent.jsx';
 import GeneralEnquiryModal from '../components/GeneralEnquiryModal.jsx';
 
@@ -13,35 +12,29 @@ function HomePage() {
 
   return (
     <div className="w-full">
-      {/* Hero Section with Image */}
-      <section className="relative h-[500px] md:h-[600px] mb-12">
-        <div className="absolute inset-0">
-          <img 
-            src="/images/debbie-hero-poodle.jpg" 
-            alt="Debbie with a happy poodle and soccer ball"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-        </div>
+      {/* Hero Section with Image - Full Image Visible */}
+    <section className="relative mb-12">
+      <div className="relative">
+        <img 
+          src="/images/debbie-hero-poodle-optimized.jpg" 
+          alt="Debbie with a happy poodle and soccer ball"
+          className="w-full h-auto"  // This is the key change!
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
         
         {/* Hero Content Overlay */}
-        <div className="relative h-full flex items-center justify-center text-center px-4">
+        <div className="absolute inset-0 flex items-center justify-center text-center px-4">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 drop-shadow-lg">
               Welcome to Debbie's Awesome Pawsome
             </h1>
-            <p className="text-xl md:text-2xl text-white mb-8 drop-shadow-md">
-              Your trusted pet care partner in Washington, DC. 
-              Where every pet is treated with love, respect, and professional expertise.
+            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-white mb-8 drop-shadow-md">
+              Your trusted pet care partner in Washington, DC
             </p>
           </div>
         </div>
-      </section>
-
-      {/* Certification Banner */}
-      <div className="px-4 md:px-8 lg:px-12">
-        <CertificationBanner />
       </div>
+    </section>
 
       {/* Main Navigation Cards */}
       <section className="px-4 md:px-8 lg:px-12 py-12">
@@ -66,8 +59,8 @@ function HomePage() {
               </div>
             </Link>
 
-            {/* Services Card - Updated to use anchor link */}
-            <a href="/#services" className="group">
+            {/* Services Card - Now links to services page */}
+            <Link to="/services" className="group">
               <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 h-full">
                 <div className="text-center">
                   <div className="text-4xl mb-4">🐾</div>
@@ -79,7 +72,7 @@ function HomePage() {
                   </p>
                 </div>
               </div>
-            </a>
+            </Link>
 
             {/* Testimonials Card */}
             <Link to="/testimonials" className="group">
@@ -96,7 +89,7 @@ function HomePage() {
               </div>
             </Link>
 
-            {/* Contact Card - Updated to open modal directly */}
+            {/* Contact Card */}
             <button 
               onClick={openEnquiryModal}
               className="group text-left w-full"
@@ -129,12 +122,12 @@ function HomePage() {
             With professional training and genuine love for animals, we provide peace of mind 
             while you're away and joy for your pets every day.
           </p>
-          <a 
-            href="/#services" 
+          <Link 
+            to="/services" 
             className="inline-block mt-6 bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-all hover:scale-105"
           >
             View Our Services
-          </a>
+          </Link>
         </div>
       </section>
 

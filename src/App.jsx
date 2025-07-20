@@ -22,6 +22,7 @@ import GeneralEnquiryModal from './components/GeneralEnquiryModal';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage.jsx';
 // Import the AdminProtectedRoute (we will create this file in the next step)
 import AdminProtectedRoute from './components/AdminProtectedRoute.jsx';
+import ServicesPage from './pages/ServicesPage';
 
 function App() {
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
@@ -37,6 +38,8 @@ function App() {
         <Route path="about" element={<AboutPage />} /> {/* CORRECTED: relative path */}
         <Route path="testimonials" element={<TestimonialsPage openEnquiryModal={openEnquiryModal} />} /> {/* CORRECTED: relative path */}
         <Route path="privacy-policy" element={<PrivacyPolicyPage />} /> 
+        // Add this route:
+        <Route path="/services" element={<ServicesPage />} />
          {/* <Route path="privacy-policy" element={<PrivacyPolicyPage />} /> ... we'll add this next */}
       </Route>
 

@@ -5,7 +5,7 @@ import LoadingSpinner from '../components/LoadingSpinner.jsx';
 import CertificationBanner from '../components/CertificationBanner.jsx';
 import LocalSEOContent from '../components/LocalSEOContent.jsx';
 
-function HomePage() {
+function ServicesPage() {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -174,4 +174,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default ServicesPage;
