@@ -1,6 +1,5 @@
-// src/pages/HomePage.jsx (NEW FILE)
+// src/pages/HomePage.jsx
 import React, { useState, useEffect } from 'react';
-
 import { Link } from 'react-router-dom';
 import LocalSEOContent from '../components/LocalSEOContent.jsx';
 import GeneralEnquiryModal from '../components/GeneralEnquiryModal.jsx';
@@ -17,29 +16,28 @@ function HomePage() {
 
   return (
     <div className="w-full">
-   {/* Hero Section - Smaller height */}
-    <section className="relative bg-gray-100 mb-12">
-      <div className="relative h-[200px] sm:h-[250px] md:h-[300px] overflow-hidden">
-        <img 
-          src="/images/debbie-hero-poodle-small.jpg" 
-          alt="Debbie with a happy poodle and soccer ball"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        
-        {/* Hero Content Overlay - Adjusted text sizes */}
-        <div className="absolute inset-0 flex items-center justify-center text-center px-4">
-          <div className="max-w-3xl">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow-lg">
-              Welcome to Debbie's Awesome Pawsome
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl text-white drop-shadow-md">
-              Your trusted pet care partner in Washington, DC
-            </p>
+      {/* Welcome Banner */}
+      <section className="text-center py-8 px-4 bg-gradient-to-r from-purple-50 to-blue-50">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3">
+          Welcome to Debbie's Awesome Pawsome
+        </h1>
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-700">
+          Your trusted pet care partner in Washington, DC
+        </p>
+      </section>
+
+      {/* Hero Image in Elliptical Frame */}
+      <section className="py-12 px-4">
+        <div className="max-w-3xl mx-auto">
+          <div className="relative h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden rounded-[50%] shadow-2xl border-4 border-purple-200">
+            <img 
+              src="/images/debbie-hero-poodle-small.jpg" 
+              alt="Debbie with a happy poodle and soccer ball"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* Main Navigation Cards */}
       <section className="px-4 md:px-8 lg:px-12 py-12">
@@ -64,7 +62,7 @@ function HomePage() {
               </div>
             </Link>
 
-            {/* Services Card - Now links to services page */}
+            {/* Services Card */}
             <Link to="/services" className="group">
               <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 h-full">
                 <div className="text-center">
@@ -115,7 +113,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Welcome Message */}
+      {/* Your Pet's Happiness Message */}
       <section className="bg-purple-50 py-12 px-4 md:px-8 lg:px-12">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
