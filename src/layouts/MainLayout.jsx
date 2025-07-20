@@ -101,7 +101,7 @@ function MainLayout() {
               {/* ... Desktop nav links ... */}
               <NavLink to="/" className={navLinkStyle} onClick={handleDesktopNavClick} end>Home</NavLink>
               <NavLink to="/about" className={navLinkStyle} onClick={handleDesktopNavClick}>About</NavLink>
-              <a href="/#services" className="text-gray-700 hover:text-purple-600 hover:bg-purple-50 py-2 px-3 rounded-md transition-colors" onClick={handleDesktopNavClick}>Services</a>
+              <NavLink to="/services" className={navLinkStyle} onClick={handleDesktopNavClick}>Services</NavLink>
               <NavLink to="/testimonials" className={navLinkStyle} onClick={handleDesktopNavClick}>Testimonials</NavLink>
               <button onClick={handleDesktopEnquiryClick} className="text-gray-700 hover:text-purple-600 hover:bg-purple-50 py-2 px-3 rounded-md transition-colors">Contact</button>
             </nav>
@@ -120,14 +120,7 @@ function MainLayout() {
                   >
                     About
                   </NavLink>
-                  <a 
-                    href="/#services" 
-                    // Apply similar styling to <a> tags if navLinkStyle is not directly applicable
-                    className="block text-gray-700 hover:text-purple-600 hover:bg-purple-50 py-2 px-3 rounded-md transition-colors" 
-                    onClick={handleMobileMenuLinkClick}
-                  >
-                    Services
-                  </a>
+                  <NavLink to="/services" className={navLinkStyle} onClick={handleDesktopNavClick}>Services</NavLink>
                   <NavLink 
                     to="/testimonials" 
                     className={navLinkStyle}

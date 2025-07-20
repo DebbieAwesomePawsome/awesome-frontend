@@ -28,6 +28,13 @@ function App() {
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
   const openEnquiryModal = () => setIsEnquiryModalOpen(true);
   const closeEnquiryModal = () => setIsEnquiryModalOpen(false);
+  function App() {
+  const location = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  
   return (
     <>
     <Routes>

@@ -12,26 +12,24 @@ function HomePage() {
 
   return (
     <div className="w-full">
-      {/* Hero Section with Image - Full Image Visible */}
-    <section className="relative mb-12">
-      <div className="relative">
-        <img 
-          src="/images/debbie-hero-poodle-optimized.jpg" 
-          alt="Debbie with a happy poodle and soccer ball"
-          className="w-full h-auto"  // This is the key change!
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-        
-        {/* Hero Content Overlay */}
-        <div className="absolute inset-0 flex items-center justify-center text-center px-4">
-          <div className="max-w-3xl">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-              Welcome to Debbie's Awesome Pawsome
-            </h1>
-            <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-white mb-8 drop-shadow-md">
-              Your trusted pet care partner in Washington, DC
-            </p>
-          </div>
+   {/* Hero Section with controlled height */}
+    <section className="relative h-[400px] sm:h-[450px] md:h-[500px] mb-12 overflow-hidden">
+      <img 
+        src="/images/debbie-hero-poodle-optimized.jpg" 
+        alt="Debbie with a happy poodle and soccer ball"
+        className="w-full h-full object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+      
+      {/* Hero Content Overlay */}
+      <div className="absolute inset-0 flex items-center justify-center text-center px-4">
+        <div className="max-w-3xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+            Welcome to Debbie's Awesome Pawsome
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 drop-shadow-md">
+            Your trusted pet care partner in Washington, DC
+          </p>
         </div>
       </div>
     </section>
