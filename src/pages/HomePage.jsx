@@ -1,174 +1,150 @@
 // src/pages/HomePage.jsx
-import React, { useState, useEffect } from 'react';
-import BookingFormModal from '../components/BookingFormModal'; 
-import LoadingSpinner from '../components/LoadingSpinner.jsx'; 
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import CertificationBanner from '../components/CertificationBanner.jsx';
 import LocalSEOContent from '../components/LocalSEOContent.jsx';
+import GeneralEnquiryModal from '../components/GeneralEnquiryModal.jsx';
 
 function HomePage() {
-  const [services, setServices] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
 
-  // State for Booking Modal
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [selectedServiceForBooking, setSelectedServiceForBooking] = useState('');
-
-  useEffect(() => {
-    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    const effectiveApiURL = isLocal
-      ? 'http://localhost:4000/api/services'
-      : '/api/services';
-
-    setLoading(true);
-    fetch(effectiveApiURL)
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then(data => {
-        if (data && data.services && Array.isArray(data.services)) {
-          setServices(data.services);
-        } else {
-          setServices([]);
-        }
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error fetching services:', err);
-        setServices([]);
-        setLoading(false);
-      });
-  }, []);
-
-  // Separate services by category
-  const coreServices = services.filter(s => 
-    s.category === 'Regular' || !s.category || s.category === ''
-  );
-  const specialServices = services.filter(s => 
-    s.category === 'Specials' || s.category === 'Special'
-  );
-
-  const handleOpenBookingModal = (serviceName) => {
-    setSelectedServiceForBooking(serviceName);
-    setIsBookingModalOpen(true);
-  };
-
-  const handleCloseBookingModal = () => {
-    setIsBookingModalOpen(false);
-    setSelectedServiceForBooking(''); 
-  };
-
-  const renderServiceCard = (service) => (
-    <div
-      key={service.id}
-      className="bg-white rounded-xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-all duration-300 border-l-4 border-purple-500 hover:border-pink-500 w-full"
-    >
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div className="flex-1">
-          <h3 className="text-2xl md:text-3xl font-bold text-green-600 mb-2">{service.name}</h3>
-          <p className="text-xl md:text-2xl font-bold text-gray-800 mb-3">{service.price_string}</p>
-          <p className="text-gray-600 text-lg leading-relaxed">{service.description}</p>
-        </div>
-        
-        <div className="md:flex-shrink-0">
-          <button
-            className="w-full md:w-auto bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg transition-all duration-200 font-semibold hover:scale-105 transform text-lg"
-            onClick={() => handleOpenBookingModal(service.name)}
-          >
-            Request Booking
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+  const openEnquiryModal = () => setIsEnquiryModalOpen(true);
+  const closeEnquiryModal = () => setIsEnquiryModalOpen(false);
 
   return (
-    <div className="w-full px-4 md:px-8 lg:px-12 py-8">
-      {/* Header Section */}
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-          Our Services
-        </h2>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Professional, loving pet care in Washington, DC
-        </p>
+    <div className="w-full">
+      {/* Hero Section with Image */}
+      <section className="relative h-[500px] md:h-[600px] mb-12">
+        <div className="absolute inset-0">
+          <img 
+            src="/images/debbie-hero-poodle.jpg" 
+            alt="Debbie with a happy poodle and soccer ball"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+        </div>
+        
+        {/* Hero Content Overlay */}
+        <div className="relative h-full flex items-center justify-center text-center px-4">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+              Welcome to Debbie's Awesome Pawsome
+            </h1>
+            <p className="text-xl md:text-2xl text-white mb-8 drop-shadow-md">
+              Your trusted pet care partner in Washington, DC. 
+              Where every pet is treated with love, respect, and professional expertise.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Certification Banner */}
+      <div className="px-4 md:px-8 lg:px-12">
+        <CertificationBanner />
       </div>
 
-      <CertificationBanner />
+      {/* Main Navigation Cards */}
+      <section className="px-4 md:px-8 lg:px-12 py-12">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+            How Can We Help You Today?
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* About Card */}
+            <Link to="/about" className="group">
+              <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 h-full">
+                <div className="text-center">
+                  <div className="text-4xl mb-4">👋</div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-purple-600">
+                    About Debbie
+                  </h3>
+                  <p className="text-gray-600">
+                    Meet your ABC-certified pet care professional
+                  </p>
+                </div>
+              </div>
+            </Link>
 
-      {/* Services Sections */}
-      {loading ? (
-        <LoadingSpinner message="Loading our totally Pawsome services..." />
-      ) : (
-        <div className="space-y-12" id="services">
-          {/* Core Services */}
-          {coreServices.length > 0 && (
-            <section>
-              <div className="text-center mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-800 flex items-center justify-center gap-3">
-                  <span className="text-3xl">❤️</span>
-                  Core Services
-                  <span className="text-3xl">❤️</span>
-                </h3>
-                <p className="text-gray-600 mt-2">
-                  Our foundation services for your pet's daily care and wellbeing
-                </p>
+            {/* Services Card - Updated to use anchor link */}
+            <a href="/#services" className="group">
+              <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 h-full">
+                <div className="text-center">
+                  <div className="text-4xl mb-4">🐾</div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-purple-600">
+                    Our Services
+                  </h3>
+                  <p className="text-gray-600">
+                    Explore our core & special pet care offerings
+                  </p>
+                </div>
               </div>
-              <div className="space-y-6 max-w-4xl mx-auto">
-                {coreServices.map(renderServiceCard)}
-              </div>
-            </section>
-          )}
+            </a>
 
-          {/* Divider - keeping the star */}
-          {coreServices.length > 0 && specialServices.length > 0 && (
-            <div className="flex items-center justify-center my-12">
-              <div className="h-px bg-gray-300 flex-1"></div>
-              <div className="px-6">
-                <span className="text-2xl">⭐</span>
+            {/* Testimonials Card */}
+            <Link to="/testimonials" className="group">
+              <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 h-full">
+                <div className="text-center">
+                  <div className="text-4xl mb-4">⭐</div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-purple-600">
+                    Testimonials
+                  </h3>
+                  <p className="text-gray-600">
+                    See what our happy clients say about us
+                  </p>
+                </div>
               </div>
-              <div className="h-px bg-gray-300 flex-1"></div>
-            </div>
-          )}
+            </Link>
 
-          {/* Special Services */}
-          {specialServices.length > 0 && (
-            <section>
-              <div className="text-center mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-purple-600 flex items-center justify-center gap-3">
-                  <span className="text-3xl">✨</span>
-                  Special Services
-                  <span className="text-3xl">✨</span>
-                </h3>
-                <p className="text-gray-600 mt-2">
-                  Enhanced care packages that build on our core services
-                </p>
+            {/* Contact Card - Updated to open modal directly */}
+            <button 
+              onClick={openEnquiryModal}
+              className="group text-left w-full"
+            >
+              <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 h-full">
+                <div className="text-center">
+                  <div className="text-4xl mb-4">📧</div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-purple-600">
+                    Contact Us
+                  </h3>
+                  <p className="text-gray-600">
+                    Get in touch for booking or questions
+                  </p>
+                </div>
               </div>
-              <div className="space-y-6 max-w-4xl mx-auto">
-                {specialServices.map(renderServiceCard)}
-              </div>
-            </section>
-          )}
-
-          {/* If no services at all */}
-          {services.length === 0 && (
-            <p className="text-center text-gray-600">
-              No services to display at the moment. Please try again later.
-            </p>
-          )}
+            </button>
+          </div>
         </div>
-      )}
+      </section>
 
+      {/* Welcome Message */}
+      <section className="bg-purple-50 py-12 px-4 md:px-8 lg:px-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+            Your Pet's Happiness is Our Priority
+          </h2>
+          <p className="text-lg text-gray-700 leading-relaxed">
+            Whether you need a reliable dog walker, a caring pet sitter, or specialized care 
+            for your furry family member, Debbie's Awesome Pawsome is here to help. 
+            With professional training and genuine love for animals, we provide peace of mind 
+            while you're away and joy for your pets every day.
+          </p>
+          <a 
+            href="/#services" 
+            className="inline-block mt-6 bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-all hover:scale-105"
+          >
+            View Our Services
+          </a>
+        </div>
+      </section>
+
+      {/* Service Areas */}
       <LocalSEOContent />
 
-      {/* Booking Modal */}
-      <BookingFormModal
-        isOpen={isBookingModalOpen}
-        onClose={handleCloseBookingModal}
-        serviceName={selectedServiceForBooking}
+      {/* General Enquiry Modal */}
+      <GeneralEnquiryModal 
+        isOpen={isEnquiryModalOpen} 
+        onClose={closeEnquiryModal} 
       />
     </div>
   );
