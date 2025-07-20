@@ -20,6 +20,7 @@ import AdminServicesDashboardPage from './pages/admin/AdminServicesDashboardPage
 // Components
 import GeneralEnquiryModal from './components/GeneralEnquiryModal';
 import AdminProtectedRoute from './components/AdminProtectedRoute.jsx';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
@@ -34,6 +35,7 @@ function App() {
   
   return (
     <>
+    <ScrollToTop /> 
       <Routes>
         {/* Public Site Routes: Wrapped by MainLayout */}
         <Route path="/" element={<MainLayout />}>

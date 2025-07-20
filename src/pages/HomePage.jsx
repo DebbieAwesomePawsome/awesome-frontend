@@ -13,26 +13,29 @@ function HomePage() {
   return (
     <div className="w-full">
    {/* Hero Section with controlled height */}
-    <section className="relative h-[400px] sm:h-[450px] md:h-[500px] mb-12 overflow-hidden">
+    <section className="relative bg-gray-100 mb-12">
+    <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden">
       <img 
-        src="/images/debbie-hero-poodle-optimized.jpg" 
+        src="/images/debbie-hero-poodle-hero.jpg" 
         alt="Debbie with a happy poodle and soccer ball"
-        className="w-full h-full object-cover object-center"
+        className="w-full h-full object-contain"  // Changed to object-contain
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+      {/* Optional: Add a subtle background in case image doesn't fill */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
       
       {/* Hero Content Overlay */}
       <div className="absolute inset-0 flex items-center justify-center text-center px-4">
         <div className="max-w-3xl">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
             Welcome to Debbie's Awesome Pawsome
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 drop-shadow-md">
+          <p className="text-lg sm:text-xl md:text-2xl text-white drop-shadow-md">
             Your trusted pet care partner in Washington, DC
           </p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
       {/* Main Navigation Cards */}
       <section className="px-4 md:px-8 lg:px-12 py-12">
