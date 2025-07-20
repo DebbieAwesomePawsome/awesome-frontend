@@ -1,5 +1,6 @@
 // src/pages/HomePage.jsx (NEW FILE)
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
 import LocalSEOContent from '../components/LocalSEOContent.jsx';
 import GeneralEnquiryModal from '../components/GeneralEnquiryModal.jsx';
