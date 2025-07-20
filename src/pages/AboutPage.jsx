@@ -1,5 +1,5 @@
 // frontend/src/pages/AboutPage.jsx
-import React from 'react';
+
 import React, { useState, useEffect } from 'react';  // Add useEffect here
 
 // Removed: import MainLayout from '../layouts/MainLayout.jsx'; 
