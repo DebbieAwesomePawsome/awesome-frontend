@@ -11,9 +11,15 @@ const testimonials = [
     verified: true,
   },
   {
-    quote: "Debrani is an amazing pet sitter. She has a deep love of all animals and is very caring towards them. Add to that her dog training credentials and it makes her the perfect person to babysit the furry kids. She is also very honest and trustworthy.",
-    name: "Jaideep H.",
-    date: "July 6, 2023",
+    quote: "Debbie is wonderful! She took excellent care of my two dogs. I got pictures, daily updates, and my dogs were so happy and calm when I returned. I am grateful to have found someone so trustworthy and caring. Highly recommend!",
+    name: "Farida H.",
+    date: "June 2024", // You can update with the real date if you have it
+    verified: true,
+  },
+  {
+    quote: "I can’t thank Debbie enough! She is extremely reliable, very caring, and attentive to all the details for my elderly cat’s needs. It gives me real peace of mind to know my pet is in such good hands.",
+    name: "Karen M.",
+    date: "June 2024", // You can update this too
     verified: true,
   },
   {

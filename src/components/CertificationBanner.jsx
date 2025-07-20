@@ -34,7 +34,7 @@ export default function CertificationBanner() {
               </span>
               <span className="inline-flex items-center bg-white px-4 py-2 rounded-full shadow-md text-sm font-medium text-gray-700">
                 <span className="text-green-500 mr-2">✓</span>
-                Insured & Bonded
+                Experienced and Caring
               </span>
               <span className="inline-flex items-center bg-white px-4 py-2 rounded-full shadow-md text-sm font-medium text-gray-700">
                 <span className="text-green-500 mr-2">✓</span>
