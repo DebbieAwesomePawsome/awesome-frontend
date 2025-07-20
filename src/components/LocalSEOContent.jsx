@@ -1,7 +1,7 @@
 // frontend/src/components/LocalSEOContent.jsx
 import React from 'react';
 
-export default function LocalSEOContent() {
+export default function LocalSEOContent({ openEnquiryModal }) {
   // Updated for Washington, DC (20001)
   const currentCityBase = "Washington, DC 20001";
   const primaryServiceAreas = [
@@ -26,8 +26,11 @@ export default function LocalSEOContent() {
 
   // This function can trigger the General Enquiry Modal in the future
   const handleReachOutClick = () => {
-    alert("Please use the 'Contact' link in the header or footer to send us a message about your location!");
-    // TODO: Integrate with openEnquiryModal()
+   if (openEnquiryModal) {
+      openEnquiryModal();
+    } else {
+      alert("Please use the 'Contact' link in the header to send us a message about your location!");
+    }
   };
 
   return (

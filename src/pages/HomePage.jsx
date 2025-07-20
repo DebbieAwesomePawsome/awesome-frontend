@@ -33,7 +33,8 @@ function HomePage() {
             <img 
               src="/images/debbie-hero-poodle-small.jpg" 
               alt="Debbie with a happy poodle and soccer ball"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"  // Changed from object-cover to object-contain
+              style={{ backgroundColor: '#f3f4f6' }}  // Add a background color for empty space
             />
           </div>
         </div>
@@ -135,7 +136,7 @@ function HomePage() {
       </section>
 
       {/* Service Areas */}
-      <LocalSEOContent />
+      <LocalSEOContent openEnquiryModal={openEnquiryModal} />
 
       {/* General Enquiry Modal */}
       <GeneralEnquiryModal 
