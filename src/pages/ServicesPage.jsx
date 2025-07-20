@@ -15,6 +15,10 @@ function ServicesPage() {
   const [selectedServiceForBooking, setSelectedServiceForBooking] = useState('');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const effectiveApiURL = isLocal
       ? 'http://localhost:4000/api/services'

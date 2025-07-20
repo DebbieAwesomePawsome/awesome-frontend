@@ -101,6 +101,11 @@ const testimonials = [
 ];
 
 export default function TestimonialsPage({ openEnquiryModal }) {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   return (
     <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="bg-white shadow-xl rounded-lg p-6 md:p-10">

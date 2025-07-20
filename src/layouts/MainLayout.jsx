@@ -19,6 +19,11 @@ function MainLayout() {
   const closeSmithieModal = () => setIsSmithieModalOpen(false);
   const openEnquiryModal = () => setIsEnquiryModalOpen(true);
   const closeEnquiryModal = () => setIsEnquiryModalOpen(false);
+  
+  // Force scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => { /* ... useEffect for initial animation remains the same ... */
     const timer = setTimeout(() => {
