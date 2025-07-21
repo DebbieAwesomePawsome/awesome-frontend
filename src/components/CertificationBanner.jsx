@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function CertificationBanner() {
   return (
-    <div className="bg-gradient-to-r from-purple-50 to-indigo-50 py-6 sm:py-8 my-8 rounded-lg shadow-lg">
+    <div className="bg-gradient-to-r from-purple-50 to-indigo-50 py-6 sm:py-8 -mt-8 mb-8 rounded-lg shadow-lg">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
           
