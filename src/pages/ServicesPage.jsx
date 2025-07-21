@@ -1,4 +1,4 @@
-// src/pages/HomePage.jsx
+// src/pages/ServicesPage.jsx
 import React, { useState, useEffect } from 'react';
 import BookingFormModal from '../components/BookingFormModal'; 
 import LoadingSpinner from '../components/LoadingSpinner.jsx'; 
@@ -91,8 +91,8 @@ function ServicesPage() {
 
   return (
     <div className="w-full px-4 md:px-8 lg:px-12 py-8">
-      {/* Header Section */}
-      <div className="text-center mb-12">
+      {/* Header Section - Reduced bottom margin */}
+      <div className="text-center mb-6">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
           Our Services
         </h2>
@@ -102,6 +102,15 @@ function ServicesPage() {
       </div>
 
       <CertificationBanner />
+
+      {/* Introductory Pricing Notice */}
+      <div className="text-center mb-8 mt-8">
+        <div className="inline-block bg-green-50 border-2 border-green-500 rounded-lg px-6 py-3 shadow-md">
+          <p className="text-lg font-semibold text-green-800">
+            🎉 Take advantage of our introductory pricing, good through December 31st, 2025!
+          </p>
+        </div>
+      </div>
 
       {/* Services Sections */}
       {loading ? (
