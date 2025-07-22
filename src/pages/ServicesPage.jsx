@@ -107,7 +107,7 @@ function ServicesPage() {
       <div className="text-center mb-8 mt-8">
         <div className="inline-block bg-green-50 border-2 border-green-500 rounded-lg px-6 py-3 shadow-md">
           <p className="text-lg font-semibold text-green-800">
-            🎉 Take advantage of our introductory pricing, good through December 31st, 2025!
+            🎉 Take advantage of our introductory pricing, good through December 31st, 2025! And don't forget to ask for your first-time client discount!
           </p>
         </div>
       </div>
