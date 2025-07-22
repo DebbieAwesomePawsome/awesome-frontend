@@ -45,7 +45,7 @@ export default function AboutPage() {
                 Animal Behavior College Certified Professional
               </h2>
               <p className="text-gray-700 leading-relaxed">
-                Debbie is a proud graduate of the prestigious Animal Behavior College (ABC). This certification signifies a deep understanding of animal behavior, positive reinforcement training techniques, pet first aid & CPR, health, and nutrition. Choosing an ABC-certified professional means your beloved pets receive care that is not only loving but also informed by expert knowledge and best practices in the pet care industry.
+                Debbie is a proud graduate of the prestigious Animal Behavior College (ABC). This certification signifies a deep understanding of animal behavior, positive reinforcement training techniques, health, and nutrition. Choosing an ABC-certified professional means your beloved pets receive care that is not only loving but also informed by expert knowledge and best practices in the pet care industry.
               </p>
             </div>
           </div>
